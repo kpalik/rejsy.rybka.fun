@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Anchor } from "lucide-react";
+import { RegistrationModal } from "./RegistrationModal";
 
 const CTASection = () => {
   return (
@@ -19,18 +20,18 @@ const CTASection = () => {
             Liczba kabin jest ograniczona. Zarezerwuj swoje miejsce już dziś i przeżyj
             niezapomnianą przygodę na morzu.
           </p>
-          <a
-            href="https://rybka.fun/zgloszenie/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-secondary-foreground font-body font-bold text-lg rounded-full shadow-ocean hover:shadow-card-hover hover:scale-105 transition-all duration-300"
-          >
-            Rezerwuję miejsce ⛵
-          </a>
+          <RegistrationModal>
+            <button
+              className="inline-flex items-center justify-center px-10 py-5 bg-secondary text-secondary-foreground font-body font-bold text-lg rounded-full shadow-ocean hover:shadow-card-hover hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              Rezerwuję miejsce ⛵
+            </button>
+          </RegistrationModal>
         </motion.div>
       </div>
     </section>
   );
 };
+
 
 export default CTASection;

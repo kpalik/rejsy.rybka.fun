@@ -36,6 +36,22 @@ npm i
 npm run dev
 ```
 
+## Testowanie lokalne z funkcjami Netlify
+
+Część funkcjonalności (np. formularz zgłoszeniowy) wymaga funkcji backendowych Netlify. Aby przetestować je lokalnie:
+
+1.  Upewnij się, że masz zainstalowane zależności: `npm install`.
+2.  Skopiuj plik `.env` i uzupełnij go o swój adres webhooka:
+    ```sh
+    WEBHOOK_URL=https://twoj-url-webhooka.com
+    ```
+3.  Uruchom projekt za pomocą komendy Netlify CLI (zamiast `npm run dev`):
+    ```sh
+    npm run dev:netlify
+    ```
+    Komenda ta uruchomi serwer Vite oraz lokalną instancję funkcji pod adresem `localhost:8888`. Formularz będzie wtedy przesyłał dane do Twojego lokalnego środowiska, które przekaże je dalej do webhooka.
+
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
