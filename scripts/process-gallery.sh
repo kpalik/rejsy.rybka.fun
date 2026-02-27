@@ -45,7 +45,8 @@ while true; do
           sips -s format jpeg -Z 600 "$file" --out "$THUMB_DIR/$name.jpg" >/dev/null 2>&1
           
           if ! grep -q "\"$name.jpg\"" "$TS_FILE"; then
-             sed -i '' '$ d' "$TS_FILE"
+             # Bezpieczne usunięcie zamkniecia tablicy `];`
+             sed -i '' '/^[[:space:]]*\];/d' "$TS_FILE"
              echo "  \"$name.jpg\"," >> "$TS_FILE"
              echo "];" >> "$TS_FILE"
           fi
