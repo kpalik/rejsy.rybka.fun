@@ -12,7 +12,7 @@ export const cruises = [
         date: "07.02 – 14.02.2026",
         targetDate: new Date("2026-02-07"),
         location: "Teneryfa, Hiszpania",
-        price: "500",
+        price: "550",
         spots: 10,
         totalSpots: 10,
         yacht: "Bavaria Cruiser 51",
@@ -26,12 +26,12 @@ export const cruises = [
         date: "15.08 – 22.08.2026",
         targetDate: new Date("2026-08-15"),
         location: "Marina Kalamaki, Ateny",
-        price: "700",
+        price: "750",
         spots: 4,
         totalSpots: 20,
         yacht: "Oceanis 46 + Sun Odyssey 515",
         description:
-            "Kotwicowiska, zatoczki, regaty, pływanie rano i wieczorem, jazda pontonem, SUP i na maxa fun! Dwa jachty pod okiem kapitanów Michała i Grześka.",
+            "flotylla trzech jachtów razem, wspólne żeglowanie kotwiczenie zwiedzanie portowych miasteczek i ucztowanie, fun na maxa",
     },
     {
         title: "Grecja — Rejs 2",
@@ -40,12 +40,12 @@ export const cruises = [
         date: "22.08 – 29.08.2026",
         targetDate: new Date("2026-08-22"),
         location: "Marina Kalamaki → Adriatyk",
-        price: "700",
+        price: "750",
         spots: 2,
         totalSpots: 10,
         yacht: "Oceanis 46 + Sun Odyssey 515",
         description:
-            "Kontynuacja letniej przygody! Kotwicowiska, kryształowo czysta woda Adriatyku, malownicze wyspy i niezapomniane widoki z pokładu jachtu.",
+            "flotylla trzech jachtów razem, wspólne żeglowanie kotwiczenie zwiedzanie portowych miasteczek i ucztowanie, fun na maxa",
     },
     {
         title: "Karaiby – Rejs Marzeń",

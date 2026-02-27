@@ -22,4 +22,5 @@ export const kanaryImages = [
     "IMG_2491.jpg",
     "IMG_2496.jpg",
     "IMG_2512.jpg",
+  "IMG_2467.jpg",
 ];

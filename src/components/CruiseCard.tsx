@@ -146,6 +146,15 @@ const CruiseCard = ({
             >
               Ten rejs to już historia, otwórz galerię
             </Link>
+          ) : title.includes("Grecja") ? (
+            <Link
+              to={`/zapisy/${title.toLowerCase().replace(/\s+/g, '-')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 w-full inline-flex items-center justify-center px-6 py-3.5 bg-primary text-primary-foreground font-body font-semibold rounded-xl shadow-ocean hover:shadow-card-hover hover:scale-[1.02] transition-all duration-300"
+            >
+              Zapisz się na rejs ⛵
+            </Link>
           ) : (
             <a
               href="https://rybka.fun/zgloszenie/"
