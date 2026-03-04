@@ -122,6 +122,27 @@ const BookingForm = () => {
                         </div>
 
                         <div className="space-y-2">
+                            <label htmlFor="captain" className="text-sm font-semibold text-card-foreground">Wybierz Kapitana <span className="text-destructive">*</span></label>
+                            <select
+                                id="captain"
+                                name="captain"
+                                required
+                                defaultValue=""
+                                className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200 appearance-none bg-no-repeat"
+                                style={{
+                                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                                    backgroundPosition: `right 1rem center`,
+                                    backgroundSize: `1.5em 1.5em`
+                                }}
+                            >
+                                <option value="" disabled hidden>Wybierz z listy...</option>
+                                <option value="Michał">Michał</option>
+                                <option value="Grześ">Grześ</option>
+                                <option value="Wojtek">Wojtek</option>
+                            </select>
+                        </div>
+
+                        <div className="space-y-2">
                             <label htmlFor="message" className="text-sm font-semibold text-card-foreground">Poznajmy się (kilka słów o sobie)</label>
                             <textarea
                                 id="message"
