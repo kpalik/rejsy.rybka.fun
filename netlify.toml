@@ -7,13 +7,20 @@
 
 [dev]
   targetPort = 8080
-  publish = "dist"
+  port = 8888
   command = "npm run dev"
+  framework = "#custom"
+
+[context.dev.environment]
+  AIRTABLE_PAT_LOCAL = "patomTNz2hzXmKNDr.8d17a8563762e26fc0c4a0d31e731cb5f71992fcfca9c3f0036bd3701f79cc1c"
+  AIRTABLE_BASE_ID_LOCAL = "app3VAWNTzFMYZzE3"
+  AIRTABLE_TABLE_ID_LOCAL = "tblrLR6nw1nPFT1r0"
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/*"
