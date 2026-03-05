@@ -18,19 +18,45 @@ const BookingForm = () => {
         : "Rejs";
     const cruiseDate = cruise ? cruise.date : "";
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const form = e.currentTarget;
         setIsSubmitting(true);
 
-        // Simulate submission
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            const formData = new FormData(form);
+            const payload = {
+                name: String(formData.get("name") ?? "").trim(),
+                email: String(formData.get("email") ?? "").trim(),
+                phone: String(formData.get("phone") ?? "").trim(),
+                captain: String(formData.get("captain") ?? "").trim(),
+                message: String(formData.get("message") ?? "").trim(),
+                cruise: displayTitle,
+            };
+
+            const response = await fetch("/api/submit-registration", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error("Błąd podczas wysyłania zgłoszenia");
+            }
+
             toast.success("Zgłoszenie wysłane!", {
                 description: "Dziękujemy za zapis. Odezwiemy się wkrótce z dalszymi instrukcjami."
             });
-            // Optionally navigate back or reset form
-            (e.target as HTMLFormElement).reset();
-        }, 1500);
+
+            form.reset();
+        } catch (error) {
+            console.error("Booking form submission error:", error);
+            toast.error("Wystąpił błąd. Spróbuj ponownie później.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (

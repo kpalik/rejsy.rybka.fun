@@ -36,20 +36,60 @@ npm i
 npm run dev
 ```
 
-## Testowanie lokalne z funkcjami Netlify
+## Testowanie lokalne z funkcjami Netlify i Airtable
 
-Część funkcjonalności (np. formularz zgłoszeniowy) wymaga funkcji backendowych Netlify. Aby przetestować je lokalnie:
+Część funkcjonalności (np. formularz zgłoszeniowy) wymaga funkcji backendowych Netlify. Dane są wysyłane do Airtable z poziomu funkcji backendowej (PAT nie jest widoczny na froncie).
 
-1.  Upewnij się, że masz zainstalowane zależności: `npm install`.
-2.  Skopiuj plik `.env` i uzupełnij go o swój adres webhooka:
-    ```sh
-    WEBHOOK_URL=https://twoj-url-webhooka.com
-    ```
-3.  Uruchom projekt za pomocą komendy Netlify CLI (zamiast `npm run dev`):
-    ```sh
-    npm run dev:netlify
-    ```
-    Komenda ta uruchomi serwer Vite oraz lokalną instancję funkcji pod adresem `localhost:8888`. Formularz będzie wtedy przesyłał dane do Twojego lokalnego środowiska, które przekaże je dalej do webhooka.
+1. Upewnij się, że masz zainstalowane zależności: `npm install`.
+2. Utwórz lokalny plik `.env` i ustaw zmienne (plik `.env` jest ignorowany przez git):
+   ```sh
+   AIRTABLE_PAT_LOCAL=patXXXXXXXXXXXXXX
+   AIRTABLE_BASE_ID_LOCAL=appXXXXXXXXXXXXXX
+   AIRTABLE_TABLE_ID_LOCAL=TwojaNazwaTabeliLubtblXXXXXXXXXXXXXX
+   ```
+3. Uruchom projekt przez Netlify CLI (zamiast `npm run dev`):
+   ```sh
+   npm run dev:netlify
+   ```
+   Komenda uruchomi Vite oraz funkcje pod `localhost:8888`.
+
+### Troubleshooting: Port już zajęty
+
+Jeśli widzisz błąd `Could not acquire required 'port': '8888'`, oznacza to, że port jest już zajęty przez inny proces.
+
+**Szybkie rozwiązanie - zabij procesy na portach:**
+
+```powershell
+# Znajdź i zabij proces na porcie 8888 (Netlify Dev)
+$process = Get-NetTCPConnection -LocalPort 8888 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique
+if ($process) { Stop-Process -Id $process -Force }
+
+# Znajdź i zabij proces na porcie 8080 (Vite)
+$process = Get-NetTCPConnection -LocalPort 8080 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique
+if ($process) { Stop-Process -Id $process -Force }
+```
+
+**Lub użyj skryptu npm:**
+
+```sh
+npm run clean:ports
+```
+
+### Zmienne środowiskowe na Netlify (produkcja)
+
+W panelu Netlify (`Site configuration -> Environment variables`) ustaw:
+
+```sh
+AIRTABLE_PAT_PROD=patXXXXXXXXXXXXXX
+AIRTABLE_BASE_ID_PROD=appXXXXXXXXXXXXXX
+AIRTABLE_TABLE_ID_PROD=TwojaNazwaTabeliLubtblXXXXXXXXXXXXXX
+```
+
+Funkcja `submit-registration` automatycznie wykrywa środowisko:
+- lokalnie (`netlify dev`) używa zmiennych `*_LOCAL`,
+- na produkcji używa zmiennych `*_PROD`.
+
+Opcjonalnie można też użyć wspólnych fallbacków (`AIRTABLE_PAT`, `AIRTABLE_BASE_ID`, `AIRTABLE_TABLE_ID`).
 
 
 **Edit a file directly in GitHub**

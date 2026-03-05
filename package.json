@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "dev:netlify": "netlify dev",
+    "clean:ports": "powershell -Command \"$p8888 = Get-NetTCPConnection -LocalPort 8888 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($p8888) { Stop-Process -Id $p8888 -Force }; $p8080 = Get-NetTCPConnection -LocalPort 8080 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if ($p8080) { Stop-Process -Id $p8080 -Force }; Write-Host 'Porty 8080 i 8888 wyczyszczone'\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "gallery:watch": "bash scripts/process-gallery.sh"
