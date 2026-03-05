@@ -8,20 +8,14 @@
 [dev]
   targetPort = 8080
   port = 8888
-  port = 8888
   command = "npm run dev"
   framework = "#custom"
 
-[context.dev.environment]
-  AIRTABLE_PAT_LOCAL = "xxxx"
-  AIRTABLE_BASE_ID_LOCAL = "xxxx"
-  AIRTABLE_TABLE_ID_LOCAL = "xxxx"
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
-  force = true
   force = true
 
 [[redirects]]
